@@ -1,0 +1,17 @@
+{
+  "name": "ademyavuzz/site-abilities-mcp",
+  "description": "Guarded WordPress abilities for MCP clients.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "php": ">=7.4"
+  },
+  "scripts": {
+    "lint": "find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
+    "test": [
+      "@lint",
+      "php tests/smoke.php",
+      "php tests/read-only-profile.php"
+    ]
+  }
+}

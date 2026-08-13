@@ -1,0 +1,15 @@
+/.git
+/.github
+/build
+/dist
+/docs
+/tests
+/.distignore
+/.gitignore
+/composer.json
+/composer.lock
+/phpcs.xml.dist
+/phpunit.xml.dist
+/CONTRIBUTING.md
+/CODE_OF_CONDUCT.md
+/SECURITY.md
