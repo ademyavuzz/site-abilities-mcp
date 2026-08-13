@@ -3,7 +3,7 @@
  * Plugin Name: Site Abilities MCP
  * Plugin URI:  https://github.com/ademyavuzz/site-abilities-mcp
  * Description: Exposes controlled WordPress content-management abilities through the official MCP Adapter.
- * Version:     0.1.0-alpha
+ * Version:     0.1.0-alpha.1
  * Author:      Adem Yavuz
  * License:     GPL-2.0-or-later
  * Text Domain: site-abilities-mcp
