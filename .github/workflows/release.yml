@@ -12,7 +12,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Build WordPress installer ZIP
         run: bash scripts/build-release.sh "${GITHUB_REF_NAME#v}"
       - name: Publish release asset
@@ -20,3 +20,4 @@ jobs:
         with:
           files: dist/*
           generate_release_notes: true
+          prerelease: true

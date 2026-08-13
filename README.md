@@ -46,7 +46,7 @@ Only read-only abilities are MCP-public in the default profile. Optional integra
 ## Install
 
 1. Back up the WordPress database and files.
-2. Download `site-abilities-mcp-0.1.0-alpha.zip` from the GitHub release assets. Do not use GitHub's automatic “Source code” archive as the WordPress installer package.
+2. Download `site-abilities-mcp-0.1.0-alpha.1.zip` from the GitHub release assets. Do not use GitHub's automatic “Source code” archive as the WordPress installer package.
 3. In WordPress, open **Plugins → Add New Plugin → Upload Plugin**.
 4. Upload the release ZIP and activate **Site Abilities MCP**.
 5. Install and activate the official MCP Adapter. Its official release asset is named `mcp-adapter.zip`.
