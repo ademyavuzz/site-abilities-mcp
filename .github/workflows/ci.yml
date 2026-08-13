@@ -28,6 +28,45 @@ jobs:
       - name: Default profile tests
         run: php tests/read-only-profile.php
 
+  wordpress-runtime:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: wordpress
+          MYSQL_PASSWORD: wordpress
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -uroot -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          tools: wp-cli
+      - name: Install WordPress
+        run: |
+          wp core download --path=/tmp/wordpress --version=6.9 --force
+          wp config create --path=/tmp/wordpress --dbname=wordpress --dbuser=wordpress --dbpass=wordpress --dbhost=127.0.0.1:3306 --skip-check
+          wp core install --path=/tmp/wordpress --url=http://localhost --title="Site Abilities MCP Test" --admin_user=admin --admin_password=test-password --admin_email=test@example.com --skip-email
+      - name: Install development plugin
+        run: |
+          ln -s "$GITHUB_WORKSPACE" /tmp/wordpress/wp-content/plugins/site-abilities-mcp
+          wp plugin activate site-abilities-mcp --path=/tmp/wordpress
+      - name: Verify registered abilities
+        run: |
+          count="$(wp eval '$abilities = array_filter( wp_get_abilities(), static function ( $ability, $name ) { return 0 === strpos( $name, "site-abilities/" ); }, ARRAY_FILTER_USE_BOTH ); echo count( $abilities );' --path=/tmp/wordpress)"
+          test "$count" = "85"
+          wp eval '$a = wp_get_ability( "site-abilities/get-site-overview" ); if ( ! $a ) { exit( 1 ); } $result = $a->execute( array() ); if ( is_wp_error( $result ) || "read_only" !== $result["exposure_profile"] ) { exit( 1 ); }' --path=/tmp/wordpress --user=admin
+
   plugin-check:
     runs-on: ubuntu-latest
     steps:

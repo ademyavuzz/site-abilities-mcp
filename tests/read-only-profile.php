@@ -30,6 +30,10 @@ samcp_register_seo_abilities();
 samcp_register_product_abilities();
 samcp_register_admin_abilities();
 samcp_register_wpbakery_abilities();
+samcp_register_taxonomy_abilities();
+samcp_register_comment_abilities();
+samcp_register_block_abilities();
+samcp_register_discovery_abilities();
 
 $public_reads  = 0;
 $public_writes = 0;
@@ -49,6 +53,10 @@ foreach ( $GLOBALS['samcp_profile_abilities'] as $name => $ability ) {
 
 if ( 0 === $public_reads || 0 !== $public_writes ) {
 	throw new RuntimeException( 'The default profile must expose reads and hide all writes.' );
+}
+
+if ( 38 !== $public_reads ) {
+	throw new RuntimeException( 'The default profile must expose exactly 38 documented read abilities.' );
 }
 
 echo "Read-only profile tests passed.\n";

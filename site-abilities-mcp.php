@@ -3,7 +3,7 @@
  * Plugin Name: Site Abilities MCP
  * Plugin URI:  https://github.com/ademyavuzz/site-abilities-mcp
  * Description: Exposes controlled WordPress content-management abilities through the official MCP Adapter.
- * Version:     0.1.0-alpha.1
+ * Version:     0.2.0-alpha.1
  * Author:      Adem Yavuz
  * License:     GPL-2.0-or-later
  * Text Domain: site-abilities-mcp
@@ -14,6 +14,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+define( 'SAMCP_VERSION', '0.2.0-alpha.1' );
 
 /**
  * Return the active MCP exposure profile.
@@ -611,6 +613,23 @@ function samcp_change_result_schema() {
 			'action'             => array( 'type' => 'string' ),
 			'safety_revision_id' => array( 'type' => 'integer' ),
 			'page'               => samcp_full_page_schema(),
+		),
+	);
+}
+
+/**
+ * Schema returned by revision-safe synced-pattern mutations.
+ *
+ * @return array
+ */
+function samcp_pattern_change_result_schema() {
+	return array(
+		'type'       => 'object',
+		'required'   => array( 'action', 'safety_revision_id', 'pattern' ),
+		'properties' => array(
+			'action'             => array( 'type' => 'string' ),
+			'safety_revision_id' => array( 'type' => 'integer' ),
+			'pattern'            => samcp_pattern_schema(),
 		),
 	);
 }
@@ -1391,6 +1410,10 @@ $samcp_modules = array(
 	'product-abilities.php',
 	'admin-abilities.php',
 	'wpbakery-abilities.php',
+	'taxonomy-abilities.php',
+	'comment-abilities.php',
+	'block-abilities.php',
+	'discovery-abilities.php',
 );
 
 foreach ( $samcp_modules as $samcp_module ) {

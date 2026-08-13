@@ -254,7 +254,11 @@ samcp_register_seo_abilities();
 samcp_register_product_abilities();
 samcp_register_admin_abilities();
 samcp_register_wpbakery_abilities();
-samcp_test_assert( 56 === count( $GLOBALS['samcp_test_abilities'] ), 'Expected 56 registered abilities.' );
+samcp_register_taxonomy_abilities();
+samcp_register_comment_abilities();
+samcp_register_block_abilities();
+samcp_register_discovery_abilities();
+samcp_test_assert( 85 === count( $GLOBALS['samcp_test_abilities'] ), 'Expected 85 registered abilities.' );
 foreach ( $GLOBALS['samcp_test_abilities'] as $name => $ability ) {
 	samcp_test_assert( 1 === preg_match( '#^[a-z0-9-]+/[a-z0-9-]+$#', $name ), $name . ' is not a valid namespaced ability name.' );
 	samcp_test_assert( true === $ability['meta']['mcp']['public'], $name . ' is not MCP-public.' );
@@ -278,6 +282,39 @@ foreach ( $GLOBALS['samcp_test_abilities'] as $name => $ability ) {
 foreach ( array( 'site-abilities/delete-page-permanently', 'site-abilities/delete-media-permanently', 'site-abilities/update-option', 'site-abilities/switch-theme', 'site-abilities/edit-plugin-file' ) as $forbidden_ability ) {
 	samcp_test_assert( ! isset( $GLOBALS['samcp_test_abilities'][ $forbidden_ability ] ), $forbidden_ability . ' must not be exposed.' );
 }
+
+foreach ( array(
+	'site-abilities/list-taxonomies',
+	'site-abilities/assign-content-terms',
+	'site-abilities/list-comments',
+	'site-abilities/moderate-comment',
+	'site-abilities/list-block-types',
+	'site-abilities/create-synced-pattern-draft',
+	'site-abilities/get-site-overview',
+	'site-abilities/list-ability-activity',
+) as $required_ability ) {
+	samcp_test_assert( isset( $GLOBALS['samcp_test_abilities'][ $required_ability ] ), $required_ability . ' was not registered.' );
+}
+
+foreach ( array(
+	'site-abilities/assign-content-terms' => 'ASSIGN_CONTENT_TERMS',
+	'site-abilities/update-term' => 'UPDATE_TERM',
+	'site-abilities/moderate-comment' => 'MODERATE_COMMENT',
+	'site-abilities/update-comment' => 'UPDATE_COMMENT',
+	'site-abilities/update-synced-pattern' => 'UPDATE_PATTERN',
+	'site-abilities/trash-synced-pattern' => 'TRASH_PATTERN',
+) as $ability_name => $confirmation ) {
+	$ability = $GLOBALS['samcp_test_abilities'][ $ability_name ];
+	samcp_test_assert( in_array( 'confirmation', $ability['input_schema']['required'], true ), $ability_name . ' must require confirmation.' );
+	samcp_test_assert( array( $confirmation ) === $ability['input_schema']['properties']['confirmation']['enum'], $ability_name . ' has an incorrect confirmation token.' );
+}
+
+samcp_record_ability_activity( 'site-abilities/list-pages', array( 'secret' => 'must-not-be-stored' ), array( 'content' => 'must-not-be-stored' ) );
+$activity = get_option( 'samcp_ability_activity', array() );
+samcp_test_assert( 1 === count( $activity ), 'Ability activity metadata was not recorded.' );
+samcp_test_assert( array( 'ability', 'executed_gmt', 'user_id' ) === array_keys( $activity[0] ), 'Ability activity must not store input or output data.' );
+samcp_record_ability_activity( 'other-plugin/private-operation', array( 'secret' => 'ignored' ), null );
+samcp_test_assert( 1 === count( get_option( 'samcp_ability_activity', array() ) ), 'Activity logger captured another plugin namespace.' );
 
 $GLOBALS['samcp_test_posts'][100] = samcp_test_page( 100, 'publish', 'Original live content.' );
 $stale = samcp_update_published_page(
