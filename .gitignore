@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+auth.json
+config.toml
+vendor/
+node_modules/
+build/
+dist/
+tmp/
+output/
+*.log
+*.zip
+.phpunit.result.cache

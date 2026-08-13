@@ -1,0 +1,48 @@
+name: Bug report
+description: Report a reproducible non-security problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not report security vulnerabilities here. Use private vulnerability reporting on the Security tab.
+  - type: input
+    id: version
+    attributes:
+      label: Plugin version
+      placeholder: 0.1.0-alpha
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: WordPress, PHP, and MCP Adapter versions
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I removed credentials, private URLs, and personal site content from this report.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true
