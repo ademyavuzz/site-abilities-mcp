@@ -12,10 +12,10 @@ It is designed for MCP clients such as Codex, VS Code, Claude, and Cursor. The p
 
 ## Download
 
-The current public build is **v0.1.0-alpha.1**. The expanded v0.2 development line is under review and has not been released yet.
+The current public build is **v0.2.0-alpha.1**.
 
-- [Download the WordPress installer ZIP](https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip)
-- [View release notes and checksum](https://github.com/ademyavuzz/site-abilities-mcp/releases/tag/v0.1.0-alpha.1)
+- [Download the WordPress installer ZIP](https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.2.0-alpha.1/site-abilities-mcp-0.2.0-alpha.1.zip)
+- [View release notes and checksum](https://github.com/ademyavuzz/site-abilities-mcp/releases/tag/v0.2.0-alpha.1)
 - [Browse all releases](https://github.com/ademyavuzz/site-abilities-mcp/releases)
 
 Upload the installer ZIP directly in **WordPress Admin → Plugins → Add New Plugin → Upload Plugin**. GitHub's **Code → Download ZIP** archive contains the development repository and is not the recommended WordPress installer package.
@@ -23,9 +23,9 @@ Upload the installer ZIP directly in **WordPress Admin → Plugins → Add New P
 Optional integrity check on macOS or Linux:
 
 ```bash
-curl -LO https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip
-curl -LO https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip.sha256
-shasum -a 256 -c site-abilities-mcp-0.1.0-alpha.1.zip.sha256
+curl -LO https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.2.0-alpha.1/site-abilities-mcp-0.2.0-alpha.1.zip
+curl -LO https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.2.0-alpha.1/site-abilities-mcp-0.2.0-alpha.1.zip.sha256
+shasum -a 256 -c site-abilities-mcp-0.2.0-alpha.1.zip.sha256
 ```
 
 ## Safety model
@@ -44,7 +44,7 @@ MCP annotations are provided for client user experience, but server-side WordPre
 
 ## Ability modules
 
-The current development version registers 85 abilities across these modules. The complete
+The current release registers 85 abilities across these modules. The complete
 inventory is available in [docs/ABILITIES.md](docs/ABILITIES.md).
 
 - Pages and revisions
@@ -73,7 +73,7 @@ Only read-only abilities are MCP-public in the default profile. Optional integra
 ## Install
 
 1. Back up the WordPress database and files.
-2. [Download `site-abilities-mcp-0.1.0-alpha.1.zip`](https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip) from the GitHub release assets. Do not use GitHub's automatic “Source code” archive as the WordPress installer package.
+2. [Download `site-abilities-mcp-0.2.0-alpha.1.zip`](https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.2.0-alpha.1/site-abilities-mcp-0.2.0-alpha.1.zip) from the GitHub release assets. Do not use GitHub's automatic “Source code” archive as the WordPress installer package.
 3. In WordPress, open **Plugins → Add New Plugin → Upload Plugin**.
 4. Upload the release ZIP and activate **Site Abilities MCP**.
 5. Install and activate the official MCP Adapter. Its official release asset is named `mcp-adapter.zip`.

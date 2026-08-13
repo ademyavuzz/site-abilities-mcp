@@ -2,7 +2,7 @@
 
 This project follows Semantic Versioning once it reaches a stable `1.0.0` release. Alpha releases may still change ability names and schemas.
 
-## 0.2.0-alpha.1 - Unreleased
+## 0.2.0-alpha.1 - 2026-08-14
 
 ### Added
 
