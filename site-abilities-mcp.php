@@ -7,10 +7,8 @@
  * Author:      Adem Yavuz
  * License:     GPL-2.0-or-later
  * Text Domain: site-abilities-mcp
- * Domain Path: /languages
  * Requires PHP: 7.4
- * Requires at least: 6.8
- * Update URI:  false
+ * Requires at least: 6.9
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -32,7 +30,7 @@ function samcp_get_profile() {
 		: 'read_only';
 
 	if ( function_exists( 'apply_filters' ) ) {
-		$profile = apply_filters( 'site_abilities_mcp_profile', $profile );
+		$profile = apply_filters( 'samcp_profile', $profile );
 	}
 
 	return 'full_access' === $profile ? 'full_access' : 'read_only';
@@ -1379,7 +1377,7 @@ function samcp_dependency_notice() {
 	}
 
 	echo '<div class="notice notice-error"><p>';
-	echo esc_html__( 'Site Abilities MCP requires the WordPress Abilities API. Use WordPress 6.9 or later, or install the compatible Abilities API package for WordPress 6.8.', 'site-abilities-mcp' );
+	echo esc_html__( 'Site Abilities MCP requires WordPress 6.9 or later because it uses the WordPress Abilities API.', 'site-abilities-mcp' );
 	echo '</p></div>';
 }
 add_action( 'admin_notices', 'samcp_dependency_notice' );

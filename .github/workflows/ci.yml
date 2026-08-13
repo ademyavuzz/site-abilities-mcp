@@ -32,6 +32,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build production plugin
+        run: |
+          version="$(sed -n 's/^ \* Version:[[:space:]]*//p' site-abilities-mcp.php | head -n 1)"
+          bash scripts/build-release.sh "${version}"
+      - name: Extract production plugin
+        run: |
+          mkdir plugin-build
+          unzip -q dist/site-abilities-mcp-*.zip -d plugin-build
       - uses: wordpress/plugin-check-action@v1
         with:
-          build-dir: './'
+          build-dir: './plugin-build/site-abilities-mcp'

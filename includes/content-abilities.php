@@ -14,7 +14,7 @@ function samcp_allowed_content_types() {
 	$types = array( 'post' );
 
 	if ( function_exists( 'apply_filters' ) ) {
-		$types = apply_filters( 'site_abilities_mcp_allowed_post_types', $types );
+		$types = apply_filters( 'samcp_allowed_post_types', $types );
 	}
 
 	$types = array_filter( array_map( 'sanitize_key', (array) $types ) );
