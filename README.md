@@ -1,10 +1,32 @@
 # Site Abilities MCP
 
+[![CI](https://github.com/ademyavuzz/site-abilities-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/ademyavuzz/site-abilities-mcp/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/ademyavuzz/site-abilities-mcp?include_prereleases&sort=semver)](https://github.com/ademyavuzz/site-abilities-mcp/releases)
+[![License: GPL-2.0-or-later](https://img.shields.io/badge/license-GPL--2.0--or--later-blue.svg)](LICENSE)
+
 Site Abilities MCP exposes guarded WordPress content-management abilities through the official WordPress Abilities API and MCP Adapter.
 
 It is designed for MCP clients such as Codex, VS Code, Claude, and Cursor. The plugin is independent, self-hosted, and does not send telemetry to the project maintainer.
 
 > **Alpha software:** Install and evaluate this release on a staging site first. The default profile is read-only. Write abilities require deliberate server-side opt-in.
+
+## Download
+
+The current public build is **v0.1.0-alpha.1**.
+
+- [Download the WordPress installer ZIP](https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip)
+- [View release notes and checksum](https://github.com/ademyavuzz/site-abilities-mcp/releases/tag/v0.1.0-alpha.1)
+- [Browse all releases](https://github.com/ademyavuzz/site-abilities-mcp/releases)
+
+Upload the installer ZIP directly in **WordPress Admin → Plugins → Add New Plugin → Upload Plugin**. GitHub's **Code → Download ZIP** archive contains the development repository and is not the recommended WordPress installer package.
+
+Optional integrity check on macOS or Linux:
+
+```bash
+curl -LO https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip
+curl -LO https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip.sha256
+shasum -a 256 -c site-abilities-mcp-0.1.0-alpha.1.zip.sha256
+```
 
 ## Safety model
 
@@ -46,7 +68,7 @@ Only read-only abilities are MCP-public in the default profile. Optional integra
 ## Install
 
 1. Back up the WordPress database and files.
-2. Download `site-abilities-mcp-0.1.0-alpha.1.zip` from the GitHub release assets. Do not use GitHub's automatic “Source code” archive as the WordPress installer package.
+2. [Download `site-abilities-mcp-0.1.0-alpha.1.zip`](https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip) from the GitHub release assets. Do not use GitHub's automatic “Source code” archive as the WordPress installer package.
 3. In WordPress, open **Plugins → Add New Plugin → Upload Plugin**.
 4. Upload the release ZIP and activate **Site Abilities MCP**.
 5. Install and activate the official MCP Adapter. Its official release asset is named `mcp-adapter.zip`.
@@ -132,6 +154,15 @@ add_filter(
 ```
 
 ## Development
+
+Clone the repository when contributing or reviewing the source:
+
+```bash
+git clone https://github.com/ademyavuzz/site-abilities-mcp.git
+cd site-abilities-mcp
+```
+
+The cloned repository is for development. Build a WordPress-ready ZIP with `bash scripts/build-release.sh 0.1.0-alpha.1`, or use the tested ZIP published under [GitHub Releases](https://github.com/ademyavuzz/site-abilities-mcp/releases) for installation.
 
 Run the dependency-free safety tests:
 
