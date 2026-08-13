@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-version="${1:-0.1.0-alpha.1}"
+version="${1:-0.2.0-alpha.1}"
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 dist_dir="${root_dir}/dist"
 temporary_parent="$(mktemp -d "${TMPDIR:-/tmp}/site-abilities-mcp-build.XXXXXX")"

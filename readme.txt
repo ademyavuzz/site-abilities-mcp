@@ -4,7 +4,7 @@ Tags: mcp, abilities-api, ai, content, automation
 Requires at least: 6.9
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.1.0-alpha.1
+Stable tag: 0.2.0-alpha.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,11 @@ The default profile publishes only read-only abilities. Guarded write abilities 
 * WooCommerce simple products when WooCommerce is active.
 * Allowlisted site settings and extension inventory.
 * WPBakery shortcode analysis and replacement preview.
+* Taxonomy discovery, term creation and recoverable term updates.
+* Content term assignment with content and assignment checksums.
+* Comment reading, replies, moderation and recoverable comment updates.
+* Gutenberg block discovery, structural previews and synced-pattern lifecycle management.
+* Safe site/content-type discovery and privacy-preserving ability activity metadata.
 
 == Requirements ==
 
@@ -79,6 +84,14 @@ The plugin does not send telemetry or contact a project-hosted service. It respo
 An MCP client may separately run the open-source `@automattic/mcp-wordpress-remote` bridge on the administrator's computer. That bridge is not bundled with or operated by this plugin.
 
 == Changelog ==
+
+= 0.2.0-alpha.1 =
+
+* Expanded the guarded surface from 56 to 85 abilities.
+* Added taxonomy, comment, Gutenberg, synced-pattern and site-discovery modules.
+* Added bounded recovery snapshots for term and comment updates.
+* Added ability activity metadata that never stores inputs, outputs, content or credentials.
+* Preserved read-only defaults and exclusions for permanent deletion, arbitrary settings and code editing.
 
 = 0.1.0-alpha.1 =
 

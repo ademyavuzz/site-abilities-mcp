@@ -12,7 +12,7 @@ It is designed for MCP clients such as Codex, VS Code, Claude, and Cursor. The p
 
 ## Download
 
-The current public build is **v0.1.0-alpha.1**.
+The current public build is **v0.1.0-alpha.1**. The expanded v0.2 development line is under review and has not been released yet.
 
 - [Download the WordPress installer ZIP](https://github.com/ademyavuzz/site-abilities-mcp/releases/download/v0.1.0-alpha.1/site-abilities-mcp-0.1.0-alpha.1.zip)
 - [View release notes and checksum](https://github.com/ademyavuzz/site-abilities-mcp/releases/tag/v0.1.0-alpha.1)
@@ -37,13 +37,14 @@ shasum -a 256 -c site-abilities-mcp-0.1.0-alpha.1.zip.sha256
 - Explicit confirmation tokens for high-impact operations.
 - No permanent content or media deletion.
 - No arbitrary option changes, PHP editing, plugin installation, plugin deletion, updates, or theme switching.
+- No permanent term or comment deletion, user/role management, block-theme file editing, or global-style writes.
 - No credential storage and no project-hosted relay service.
 
 MCP annotations are provided for client user experience, but server-side WordPress capabilities and validation remain the security boundary.
 
 ## Ability modules
 
-The current alpha registers 56 abilities across these modules. The complete
+The current development version registers 85 abilities across these modules. The complete
 inventory is available in [docs/ABILITIES.md](docs/ABILITIES.md).
 
 - Pages and revisions
@@ -54,6 +55,10 @@ inventory is available in [docs/ABILITIES.md](docs/ABILITIES.md).
 - WooCommerce simple products
 - Allowlisted site settings and extension inventory
 - WPBakery shortcode analysis
+- Public/REST-visible taxonomies and term assignments
+- Comment reading, replies and recoverable moderation
+- Gutenberg block analysis and synced patterns
+- Safe site discovery and privacy-preserving activity metadata
 
 Only read-only abilities are MCP-public in the default profile. Optional integrations return a clear error when their dependency is unavailable.
 
@@ -103,7 +108,7 @@ codex mcp list
 The default MCP Adapter exposes discovery through its adapter tools. Use `discover-abilities`, inspect the chosen ability, and execute it only after validating its arguments and expected state.
 
 The three adapter tools are expected. Site Abilities MCP abilities are discovered
-through those tools rather than appearing as 56 separate entries in `tools/list`.
+through those tools rather than appearing as separate entries in `tools/list`.
 
 ## Enabling write abilities
 
@@ -162,7 +167,7 @@ git clone https://github.com/ademyavuzz/site-abilities-mcp.git
 cd site-abilities-mcp
 ```
 
-The cloned repository is for development. Build a WordPress-ready ZIP with `bash scripts/build-release.sh 0.1.0-alpha.1`, or use the tested ZIP published under [GitHub Releases](https://github.com/ademyavuzz/site-abilities-mcp/releases) for installation.
+The cloned repository is for development. Build a WordPress-ready ZIP with `bash scripts/build-release.sh 0.2.0-alpha.1`, or use the tested ZIP published under [GitHub Releases](https://github.com/ademyavuzz/site-abilities-mcp/releases) for installation.
 
 Run the dependency-free safety tests:
 
@@ -177,7 +182,7 @@ Lint all PHP files:
 find . -name '*.php' -print0 | xargs -0 -n1 php -l
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and [SECURITY.md](SECURITY.md) for private vulnerability reporting.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow, [SECURITY.md](SECURITY.md) for private vulnerability reporting, and [docs/ROADMAP.md](docs/ROADMAP.md) for evaluated ecosystem patterns, future candidates, and the acceptance criteria for new abilities.
 
 ## Scope and compatibility
 
