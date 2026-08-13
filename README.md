@@ -37,10 +37,9 @@ Only read-only abilities are MCP-public in the default profile. Optional integra
 
 ## Requirements
 
-- WordPress 6.8 or later; WordPress 6.9 or later is recommended.
+- WordPress 6.9 or later.
 - PHP 7.4 or later.
 - [WordPress MCP Adapter](https://github.com/WordPress/mcp-adapter) installed and active.
-- WordPress 6.8 also needs a compatible Abilities API installation.
 - Node.js 22 or later when using the optional `@automattic/mcp-wordpress-remote` bridge.
 - A dedicated WordPress user and revocable Application Password, or OAuth when available.
 
@@ -100,7 +99,7 @@ Before enabling it:
 - Keep database and file backups.
 - Revoke the Application Password when access is no longer needed.
 
-The profile can also be supplied by trusted server-side code with the `site_abilities_mcp_profile` filter.
+The profile can also be supplied by trusted server-side code with the `samcp_profile` filter.
 
 ## Custom post types
 
@@ -108,7 +107,7 @@ Only standard posts are included in the generic content module by default. A tru
 
 ```php
 add_filter(
-    'site_abilities_mcp_allowed_post_types',
+    'samcp_allowed_post_types',
     static function ( $types ) {
         $types[] = 'event';
         return $types;
@@ -124,7 +123,7 @@ The MCP Adapter, Site Abilities MCP, WooCommerce, and WPBakery are protected fro
 
 ```php
 add_filter(
-    'site_abilities_mcp_protected_plugins',
+    'samcp_protected_plugins',
     static function ( $needles ) {
         $needles[] = 'my-critical-plugin/';
         return $needles;

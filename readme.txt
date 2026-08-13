@@ -1,7 +1,8 @@
 === Site Abilities MCP ===
 Contributors: ademyavuzz
 Tags: mcp, abilities-api, ai, content, automation
-Requires at least: 6.8
+Requires at least: 6.9
+Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 0.1.0-alpha
 License: GPLv2 or later
@@ -39,8 +40,7 @@ The default profile publishes only read-only abilities. Guarded write abilities 
 == Requirements ==
 
 * The official WordPress MCP Adapter must be installed and active.
-* WordPress 6.9 or later is recommended because the Abilities API is included in core.
-* WordPress 6.8 requires a compatible Abilities API installation.
+* WordPress 6.9 or later because the Abilities API is included in core.
 * Node.js 22 or later is required only when using the optional @automattic/mcp-wordpress-remote bridge.
 * Use a dedicated WordPress user and a revocable Application Password, or OAuth when supported.
 
